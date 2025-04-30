@@ -17,7 +17,6 @@
       {
         devShells.default = pkgs.mkShell {
           packages = [
-            pkgs.jekyll
             pkgs.ruby
           ];
         };
