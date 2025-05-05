@@ -35,7 +35,7 @@ There are two ways to set up the development environment:
 
 3. **Start the local development server**
    ```bash
-   bundle exec jekyll serve
+   bundle exec jekyll serve --baseurl '/project-feta-web'
    ```
    This will start a local server where you can preview your changes.
 
@@ -59,7 +59,7 @@ This is an alternative approach that ensures a consistent environment across all
 3. **Start the local development server**
    ```bash
    cd web
-   bundle exec jekyll serve
+   bundle exec jekyll serve --baseurl '/project-feta-web'
    ```
 
 ### Adding or Modifying Content
