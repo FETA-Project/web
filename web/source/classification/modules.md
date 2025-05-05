@@ -202,5 +202,5 @@ The classifier was validated using a sample of **production traffic from the CES
 To use the neural network-based classifier, the collector must be equipped with a **GPU** due to the increased computational demands.
 
 
-![Neural Network Architecture of the TLS and QUIC Service Classifier](/assets/classification_nn.png)
+![Neural Network Architecture of the TLS and QUIC Service Classifier]({{ site.baseurl }}/assets/classification_nn.png)
 *Figure 5: Neural Network Architecture of the TLS and QUIC Service Classifier*

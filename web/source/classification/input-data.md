@@ -11,7 +11,7 @@ has_children: false
 
 The classification module set is designed for deployment on a flow collector, a standard component of typical network monitoring infrastructures (see Figure 3). The Collector Server gathers flows (metadata about traffic on monitored links), which are distributed from network probes using the IPFIX transport protocol. The "Network Flow Collector" software receives and processes IPFIX data and forwards it for further analysis by the developed modules. Data distribution within the Collector server is handled using the NEMEA (Network Measurement Analysis) system <a href="/clasification#ref15">15</a>.
 
-![Network flow collection architecture showing the collector server receiving IPFIX data from network probes](/assets/classification_input.png)
+![Network flow collection architecture showing the collector server receiving IPFIX data from network probes]({{ site.baseurl }}/assets/classification_input.png)
 *Figure 3: Architecture of network flow collection and processing system*
 
 ## NEMEA System and Module Interaction

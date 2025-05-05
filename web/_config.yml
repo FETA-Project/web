@@ -19,10 +19,10 @@
 # in the templates via {{ site.myvariable }}.
 
 title: Project FETA
-email: your-email@example.com
+email: jaroslav.pesek@fit.cvut.cz
 description: >- # this means to ignore newlines until "baseurl:"
   Flow-based encrypted traffic analysis (FETA).
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: "/project-feta-web" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Build settings
