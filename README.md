@@ -1,5 +1,7 @@
 # Project FETA - Flow-based Encrypted Traffic Analysis
 
+https://cesnet.github.io/project-feta-web/
+
 This repository contains the website for Project FETA, which focuses on flow-based encrypted traffic analysis.
 
 ## About Project FETA
@@ -91,40 +93,8 @@ Place static assets in the `web/assets/` directory in an appropriate subdirector
 ### Testing Your Changes
 
 ```bash
-bundle exec jekyll build
+bundle exec jekyll serve
 ```
-
-### Using Callouts
-
-The theme supports various callout styles that you can use in your Markdown:
-
-```markdown
-{: .note }
-This is a note callout.
-
-{: .warning }
-This is a warning callout.
-
-{: .important }
-This is an important callout.
-```
-
-### Submitting Changes
-
-1. Create a new branch for your contribution
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
-
-2. Commit your changes. Use conventional commits.
-
-
-3. Push changes and create a pull request
-   ```bash
-   git push origin feature/your-feature-name
-   ```
-
-4. Submit a pull request through the repository's web interface
 
 ## License
 
