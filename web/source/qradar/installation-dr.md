@@ -5,6 +5,7 @@ permalink: /qradar/install/domainradar
 has_toc: false
 nav_order: 1
 has_children: false
+parent: V2. QRadar
 ---
 
 # DomainRadar Installation
@@ -51,7 +52,7 @@ At the top of the main [setup.sh](./setup.sh) script, you'll find a number of **
 
 The script expects all the DomainRadar repos to be cloned at paths set in [options.sh](options.sh) (which can be done using [pull.sh](./pull.sh)).
 
-> [!IMPORTANT]
+{: .important }
 > Don't forget to pull the other repositories **and** to set the configuration options before running the setup script.
 
 The script:
@@ -63,7 +64,7 @@ The script:
 - Creates a local certificate authority and a set of certificates used to authenticate clients when communicating with Apache Kafka servers.
 - Builds container images for all the services.
 
-> [!NOTE]
+{: .note }
 > The setup script is interactive. If it detects that it has been executed before, it asks the user whether to overwrite the previous content. You can use the `-y` to skip this.
 
 After completing the script, you can navigate to your `INFRA_DIR` and initialize the Apache Kafka server and DomainRadar using the following commands:
@@ -83,5 +84,5 @@ docker compose up -d  # Start
 docker compose down   # Stop
 ```
 
-> [!TIP]
+{: .tip }
 > See the README in [domainradar-infra](https://github.com/nesfit/domainradar-infra/) for more information on the infrastructure files layout, the initialization script, the services and the available advanced configuration options.

@@ -5,6 +5,7 @@ permalink: /qradar/install/malwareradar
 has_toc: false
 nav_order: 2
 has_children: false
+parent: V2. QRadar
 ---
 
 # MalwareRadar Installation
