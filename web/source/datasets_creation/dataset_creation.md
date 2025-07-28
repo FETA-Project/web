@@ -14,7 +14,7 @@ has_children: true
 The **Traffic Capture Interface (TCI)** is a modular platform that automates the full lifecycle of **collecting, processing and annotating network-traffic datasets**.  
 Originally developed in the research project *“Analysis of Encrypted Traffic Using Flow Data”* (No. VJ02010024), it enables security analysts and researchers to build reproducible training and evaluation corpora from live links **without manual packet wrangling**.
 
-![Example capture workflow](/assets/classification_input.png)
+![Example capture workflow]({{ site.baseurl }}/assets/classification_input.png)
 
 ---
 
@@ -47,12 +47,10 @@ Originally developed in the research project *“Analysis of Encrypted Traffic U
 ## Typical Workflow
 
 1. **Create a job** — via the Web UI or `pytci create-job`, specify interface(s), filters, duration and processing scripts.  
-   ![TCI login form](/assets/tci_login.png)  
 2. **Distribute capture** — the Hive backend signals one or more Drones; each writes raw PCAPs locally and streams them back.  
 3. **Process & annotate** — Hive executes the attached scripts (e.g. QUIC flow extractor, Suricata IDS, custom labeler).  
 4. **Consolidate results** — Hive merges shards and stores *pcap*, *json/csv* annotations and a machine-readable manifest.  
 5. **Download or reuse** — analysts fetch the bundle from the UI or call `pytci download-job <id>`, then feed it into ML pipelines.  
-   ![Job overview page](/assets/tci_job_list.png)
 
 ---
 
