@@ -1,6 +1,6 @@
 # Project FETA - Flow-based Encrypted Traffic Analysis
 
-https://cesnet.github.io/project-feta-web/
+https://feta-project.github.io/web/
 
 This repository contains the website for Project FETA, which focuses on flow-based encrypted traffic analysis.
 
