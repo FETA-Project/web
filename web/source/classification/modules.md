@@ -162,8 +162,8 @@ The **DataZoo library** plays a key role as it provides the training datasets us
 
 The goal of the **DataZoo library** is to support the development of models for encrypted traffic classification. The library contains three datasets created and published within the project:  
 
-- `CESNET-TLS22` <a href="/clasification#ref7">7</a>
-- `CESNET-QUIC22` <a href="/clasification#ref9">9</a>
+- `CESNET-TLS22` <a href="{{ site.baseurl }}/clasification#ref7">7</a>
+- `CESNET-QUIC22` <a href="{{ site.baseurl }}/clasification#ref9">9</a>
 - `CESNET-TLS-Year22`  
 
 For training the TLS service classifier, the dataset `CESNET-TLS-Year22` was used. This dataset contains traffic captured in the **CESNET3** network throughout the entire year 2022. The long capture period allows for training and optimizing classification models to reflect production traffic, which often changes significantly over time.
@@ -179,7 +179,7 @@ The best results were achieved using a **deep neural network** with the architec
 
 ### Module Output
 
-The classifier output consists of the original flow information enriched with a **predicted TLS service label**. The classifier can identify a total of **174 services**, with a selection of 50 shown in following listing. The full list of services and corresponding domain names is available in [<a href="/clasification#ref10">10</a>].
+The classifier output consists of the original flow information enriched with a **predicted TLS service label**. The classifier can identify a total of **174 services**, with a selection of 50 shown in following listing. The full list of services and corresponding domain names is available in [<a href="{{ site.baseurl }}/clasification#ref10">10</a>].
 
 ```
 google-ads, microsoft-defender, facebook-media, office365, rubiconproject,
