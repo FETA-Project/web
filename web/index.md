@@ -9,10 +9,7 @@ permalink: /
 
 The **FETA** (Flow-based Encrypted Traffic Analysis) project is a security research initiative focused on effectively monitoring and analyzing encrypted network traffic in modern high-speed networks. The project was carried out by a consortium led by CESNET, in cooperation with FIT CTU in Prague and FIT BUT in Brno.
 
-As encrypted network traffic becomes prevalent, traditional monitoring tools lose their effectiveness in detecting and responding to cybersecurity threats. Therefore, the FETA project developed innovative methods utilizing machine learning and advanced network traffic metadata to identify security incidents without decrypting the communication.
-
-
- * The project produced new technologies and tools enabling:
+As encrypted network traffic becomes prevalent, traditional monitoring tools lose their effectiveness in detecting and responding to cybersecurity threats. Therefore, the FETA project developed innovative methods utilizing machine learning and advanced network traffic metadata to identify security incidents without decrypting the communication. The project produced new technologies and tools enabling:
 
  * Monitoring of encrypted network communication
 
