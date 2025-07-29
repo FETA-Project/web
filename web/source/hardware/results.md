@@ -47,7 +47,7 @@ Figure 1 was obtained using the Intel Quartus Prime Pro tool and graphically sho
 
 ## Performance of CTT module
 
-When testing the performance of the created CTT module, we focused on analyzing the behavior in realistic network traffic. For this, we used the FlowTest tool, which allows generating a network profile according to various network profiles. We used the following network profiles that are part of the FlowTest tool:
+To analyze the performance parameters of the Connection Tracking Table (CTT) module, we used the 400G variant of the FPGA probe implemented on the Reflex CES XpressSX AGI-FH400G FPGA card. We measured the behavior of the CTT module under realistic network traffic conditions. For this purpose, the FlowTest tool was used, which allows the generation of network traffic according to predefined profiles representing different real networks. The profiles tested included both academic and commercial network traffic types:
 - GEANT, Afternoon Dropoff (G_AD)
 - GEANT, Morning Rise in traffic (G_MR)
 - GEANT, Spike in traffic (G_S)
@@ -56,28 +56,28 @@ When testing the performance of the created CTT module, we focused on analyzing 
 - NIX, Night Low traffic (N_NL)
 - NIX, Workday Peak (N_WP)
 
-The GEANT network is typical for transmitting a large amount of scientific data, so there are rather large packets and a smaller number of heavy flows. On the contrary, the NIX network has the character of a regular commercial network, so there are rather smaller packets and more light network flows. The FlowTest tool allows you to modify the average length of generated packets. Two network profiles were used for the measurements:
-- DefaultPackets = original packet lengths (GEANT ~1100B, NIX ~480B)
-- SmallPackets = shortened packet lengths (GEANT/NIX ~140B)
+The GEANT network is typical for transmitting a large amount of scientific data, so there are rather large packets and a smaller number of heavy flows. On the contrary, the NIX network has the character of a regular commercial network, so there are rather smaller packets and more light network flows.
 
-![Drop rate of 400G CTT module.]({{ site.baseurl }}/assets/hwres-fig2.png)
-*Figure 2: Drop rate of 400G CTT module.*
+![Packet processing performance of 400G CTT module.]({{ site.baseurl }}/assets/hwres-fig2.png)
+*Figure 2: Packet processing performance of 400G CTT module.*
 
-Figure 2 shows the drop rate of the CTT module for individual tested network traffic profiles. CTT handles all profiles while maintaining the original packet lengths without dropping. Only if we modify the packet lengths to be significantly smaller (the packet rate increases), the CTT module stops catching up and in NIX profiles with a high number of network flows, dropping occurs. In GEANT profiles, there is no dropping, here the caching system works well with a smaller number of heavy flows.
+The test results confirmed the robustness and high performance of the implemented module. Figure 2 shows that the CTT can handle 100% of the network traffic at line rate for all profiles tested. Thus, the module demonstrates reliable and high performance under a variety of load types.
 
 ![Hit rate of 400G CTT module Stash Manager.]({{ site.baseurl }}/assets/hwres-fig3.png)
 *Figure 3: Hit rate of 400G CTT module Stash Manager (also referred to as Flow State Manager).*
 
-The good functioning of the caching system is confirmed by Figure 3, which shows the average hit rate achieved for the tested profiles. The average hit rate for GEANT profiles is approximately 80%, for profiles from the NIX network the hit rate is lower, due to the larger number of unique network flows it is approximately 40%.
+The functionality of the caching mechanism integrated in the CTT module is illustrated in Figure 3, which shows the average hit rate for each profile. For profiles from the GEANT network, the average hit rate reaches over 80%, while for profiles from the NIX network it is lower, around 40%, due to the larger number of unique flows, which corresponds to the expected behaviour and confirms that the system design matches the characteristics of the specific traffic.
 
 ![Latency of 400G CTT module.]({{ site.baseurl }}/assets/hwres-fig4.png)
 *Figure 4: Latency of 400G CTT module.*
 
-The average latency of the CTT module is strongly influenced by the latency of the DRAM memories used. The results of the performed CTT module latency measurement are shown in Figure 4. In the case when there is no significant slowdown of the CTT module, the latency on average ranges from 0.5 to 1.5 μs. However, if the external DRAM memories stop catching up (even with caching), it can have a very negative impact on the latency, which can then reach the 40 μs mark in the worst cases.
+In the latency analysis, we measured the processing delay of individual packets within the CTT module. The type and behavior of the external memory (DRAM) used has the greatest impact on latency. As the graph in Figure 4 shows, the average latency ranges from 0.3 to 0.9 μs. In marginal cases, latency can get as high as 2 μs, which is typically due to the fact that the external DRAM has to periodically perform a refresh operation to prevent the loss of stored data. The latency of the CTT module is as expected.
 
 ## Deploying a probe in the CESNET3 network
 
-The monitoring FPGA probe with the FETA module was deployed together with ipfixprobe at a test measurement point in the CESNET3 network. For this deployment, a 2x100G probe implemented on a Silicom N6010 card was used. This long-term deployment in a real environment verified the stability and functionality of the prepared solution. At the same time, the expected benefits of ipfixprobe acceleration using CTT in the FPGA card were confirmed. For a specific comparison, we present Table 3 with the number of dropped packets for the *"GEANT Morning"* network profile, which is characterized by a low number of heavy flows. In such a case, the ipfixprobe probe with acceleration turned off does not catch up and drops packets, on the contrary, with acceleration using CTT turned on, packet dropping practically stops.
+The developed probe with the FETA module was successfully deployed in a test run in the CESNET3 network, specifically on a measurement point using a 2×100G probe on a Silicom N6010 card. Long-term deployment in a real network environment confirmed the stability and functionality of the proposed solution. In addition to the deployment in a production network, a successful verification of the 400G version of the probe with the FETA module under laboratory conditions was also performed. The HW tests performed confirmed that the architecture is ready for deployment in high-speed networks with the aim of long-term monitoring of network traffic and real-time anomaly detection.
+
+At the same time, the speedup of ipfixprobe was clearly verified by integrating the Connection Tracking Table (CTT) component into the FPGA. For example, the “GEANT Morning” network profile, which contains a smaller amount of very intensive flows, showed significant packet dropping when acceleration was disabled (5.17% of packets were dropped). However, with active CTT acceleration, these losses practically disappeared (0.01% of packets were discarded), which has a positive impact on the accuracy of the measurements, the collection of features about the network traffic, and therefore the resulting classification. See also Table 3.
 
 | Acceleration   | Packets (processed / total) | Bytes (processed / total) | Packet drop rate |
 |----------------|-----------------|-------------|-------------------|
@@ -86,6 +86,10 @@ The monitoring FPGA probe with the FETA module was deployed together with ipfixp
 
 *Table 3: Number of dropped packets with ipfixprobe acceleration enabled and disabled.*
 
+The benefits of the developed solution were also shared with the professional community through a presentation at the TNC 2025 conference[^TNC], which serves as the main forum for the pan-European academic networking community associated under the GEANT organisation. At the same time, a demonstration has been accepted for the FPL 2025 conference, the largest international scientific conference focused on FPGA technology, where a hands-on demonstration of accelerating network flow processing using a real-time CTT component will be presented[^FPL].
+
 ## References
 
 [^FlowTest]: CESNET, FlowTest GitHub repository, [https://github.com/CESNET/FlowTest](https://github.com/CESNET/FlowTest).
+[^TNC]: [TNC 2025, Lightning Talks: Second Strike - Lightning-fast Stateful Applications on FPGA](https://tnc25.geant.org/sessions/#s855).
+[^FPL]: [FPL 2025, Program Overview - Connection Tracking at 400 Gbps (Demo Night)](https://2025.fpl.org/program/program/).
